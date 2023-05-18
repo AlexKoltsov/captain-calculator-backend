@@ -1,8 +1,8 @@
 package com.koltsov.captain.calculator.items.service.infrastructure.web
 
 import com.koltsov.captain.calculator.items.service.api.AdminApi
-import com.koltsov.captain.calculator.items.service.domain.usecase.CreateItemUseCase
-import com.koltsov.captain.calculator.items.service.domain.usecase.FindItemsUseCase
+import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCase
+import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCase
 import com.koltsov.captain.calculator.items.service.dto.ItemResponse
 import com.koltsov.captain.calculator.items.service.dto.ItemUpsertRequest
 import com.koltsov.captain.calculator.items.service.dto.ItemsSearchRequest

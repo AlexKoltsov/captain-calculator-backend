@@ -1,8 +1,8 @@
 package com.koltsov.captain.calculator.items.service.infrastructure.web.mapper
 
 import com.koltsov.captain.calculator.items.service.domain.model.Item
-import com.koltsov.captain.calculator.items.service.domain.usecase.CreateItemUseCaseCommand
-import com.koltsov.captain.calculator.items.service.domain.usecase.FindItemsUseCaseCommand
+import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCaseCommand
+import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCaseCommand
 import com.koltsov.captain.calculator.items.service.dto.ItemResponse
 import com.koltsov.captain.calculator.items.service.dto.ItemUpsertRequest
 import com.koltsov.captain.calculator.items.service.dto.ItemsSearchRequest

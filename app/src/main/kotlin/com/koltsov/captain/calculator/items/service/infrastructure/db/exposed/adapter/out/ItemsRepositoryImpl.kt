@@ -1,19 +1,15 @@
-package com.koltsov.captain.calculator.items.service.infrastructure.db.exposed
+package com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.adapter.out
 
 import com.koltsov.captain.calculator.items.service.domain.model.Item
 import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
+import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.ItemEntity
+import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.ItemsTable
+import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.toItem
+import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.regexpOp
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.springframework.stereotype.Component
 
-@Component
 class ItemsRepositoryImpl : ItemsRepository {
-
-    override fun findAll(): List<Item> = transaction {
-        ItemEntity
-            .all()
-            .map { it.toItem() }
-    }
 
     override fun find(name: String?, description: String?): List<Item> = transaction {
         ItemEntity
@@ -33,9 +29,4 @@ class ItemsRepositoryImpl : ItemsRepository {
     }
 }
 
-private fun ItemEntity.toItem(): Item = Item(
-    id = this.id.value,
-    name = this.name,
-    description = this.description
-)
 
