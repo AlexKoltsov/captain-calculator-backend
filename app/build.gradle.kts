@@ -25,6 +25,8 @@ extra["testcontainersVersion"] = "1.18.1"
 extra["exposedVersion"] = "0.41.1"
 
 dependencies {
+    implementation(project(":sdk"))
+
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
