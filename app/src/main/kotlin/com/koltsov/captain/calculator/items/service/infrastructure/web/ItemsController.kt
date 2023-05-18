@@ -4,6 +4,10 @@ import com.koltsov.captain.calculator.items.service.domain.usecase.CreateItemUse
 import com.koltsov.captain.calculator.items.service.domain.usecase.FindItemsUseCase
 import com.koltsov.captain.calculator.items.service.infrastructure.web.dto.*
 import org.springframework.web.bind.annotation.*
+import com.koltsov.captain.calculator.items.service.infrastructure.web.dto.ItemResponse
+import com.koltsov.captain.calculator.items.service.infrastructure.web.dto.ItemUpsertRequest
+import com.koltsov.captain.calculator.items.service.infrastructure.web.dto.ItemsSearchRequest
+import com.koltsov.captain.calculator.items.service.infrastructure.web.dto.toUseCaseCommand
 
 @RequestMapping("api/v1/items")
 @RestController
