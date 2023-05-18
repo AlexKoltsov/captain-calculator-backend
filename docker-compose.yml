@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  psql:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: items-service
+      POSTGRES_USER: items-service
+      POSTGRES_PASSWORD: items-service
+    ports:
+      - "5432:5432"
