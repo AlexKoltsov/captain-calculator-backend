@@ -7,10 +7,8 @@ import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUs
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCaseCommand
 import com.koltsov.captain.calculator.items.service.domain.port.out.ImageStorage
 import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
-import org.springframework.stereotype.Component
 import java.util.*
 
-@Component
 class ItemsService(
     private val itemsRepository: ItemsRepository,
     private val imageStorage: ImageStorage,

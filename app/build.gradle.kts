@@ -1,63 +1,55 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("org.springframework.boot") version "3.0.6"
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm") version "1.7.22"
-    kotlin("plugin.spring") version "1.7.22"
+    kotlin("jvm") version "1.8.21"
+    id("io.ktor.plugin") version "2.3.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
 }
 
 group = "com.koltsov.captain.calculator"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
 repositories {
     mavenCentral()
 }
 
-extra["testcontainersVersion"] = "1.18.1"
-extra["exposedVersion"] = "0.41.1"
+extra["kotlin_version"] = "1.8.21"
+extra["kotlin_code_style"] = "official"
+extra["ktor_version"] = "2.3.0"
+extra["logback_version"] = "1.2.11"
+extra["exposed_version"] = "0.41.1"
+extra["postgres_version"] = "42.5.1"
+extra["h2_version"] = "2.1.214"
 
 dependencies {
     implementation(project(":sdk"))
 
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.flywaydb:flyway-core")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.exposed:exposed-spring-boot-starter:${property("exposedVersion")}")
+    implementation("io.ktor:ktor-server-core-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-host-common-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-netty-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-config-yaml:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-auto-head-response-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-status-pages-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-default-headers-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-call-logging-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-call-id-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:${property("ktor_version")}")
 
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.jetbrains.exposed:exposed-core:${property("exposed_version")}")
+    implementation("org.jetbrains.exposed:exposed-jdbc:${property("exposed_version")}")
+    implementation("org.jetbrains.exposed:exposed-dao:${property("exposed_version")}")
+    implementation("com.h2database:h2:${property("h2_version")}")
+    implementation("org.postgresql:postgresql:${property("postgres_version")}")
 
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("ch.qos.logback:logback-classic:${property("logback_version")}")
 
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter")
-    testImplementation("org.testcontainers:postgresql")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
+    testImplementation("io.ktor:ktor-server-tests-jvm:${property("ktor_version")}")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${property("kotlin_version")}")
 }
