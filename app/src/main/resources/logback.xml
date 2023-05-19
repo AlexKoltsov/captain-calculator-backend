@@ -1,16 +1,17 @@
 <configuration>
 
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) --- %magenta([%15.15thread]) %cyan(%-30.30logger{39}) : %msg%n"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %X{call-id} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>${CONSOLE_LOG_CHARSET}</charset>
         </encoder>
     </appender>
 
-    <root level="trace">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
-
-    <logger name="org.eclipse.jetty" level="INFO"/>
-    <logger name="io.netty" level="INFO"/>
-
 </configuration>
