@@ -1,0 +1,20 @@
+### Root
+GET localhost:8080/
+
+### Json
+GET localhost:8080/json/kotlinx-serialization
+
+### Create City
+POST localhost:8080/cities
+Content-Type: application/json
+
+{
+  "name": "Moscow",
+  "population": "10000000"
+}
+
+### City by ID
+< {%
+    request.variables.set("id", "1")
+%}
+GET localhost:8080/cities/{{id}}
