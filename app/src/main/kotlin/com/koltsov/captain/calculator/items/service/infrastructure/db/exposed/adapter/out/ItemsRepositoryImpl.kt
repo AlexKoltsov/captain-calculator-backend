@@ -8,9 +8,7 @@ import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.en
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.regexpOp
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.springframework.stereotype.Component
 
-@Component
 class ItemsRepositoryImpl : ItemsRepository {
 
     override fun find(name: String?, description: String?): List<Item> = transaction {
