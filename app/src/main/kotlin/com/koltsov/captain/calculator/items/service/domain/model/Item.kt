@@ -8,7 +8,7 @@ class Item(
     var description: String?,
     var state: ItemState,
     val types: MutableList<ItemType>,
-    var image: Image,
+    var image: Image?,
 ) : Entity<UUID>(id)
 
 enum class ItemState {

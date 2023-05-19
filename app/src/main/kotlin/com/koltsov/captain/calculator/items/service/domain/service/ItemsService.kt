@@ -1,14 +1,20 @@
 package com.koltsov.captain.calculator.items.service.domain.service
 
 import com.koltsov.captain.calculator.items.service.domain.model.Item
-import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCase
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCaseCommand
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCase
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCaseCommand
+import com.koltsov.captain.calculator.items.service.domain.port.out.ImageStorage
+import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
+import org.springframework.stereotype.Component
 import java.util.*
 
-class ItemsService(private val itemsRepository: ItemsRepository) : FindItemsUseCase, CreateItemUseCase {
+@Component
+class ItemsService(
+    private val itemsRepository: ItemsRepository,
+    private val imageStorage: ImageStorage,
+) : FindItemsUseCase, CreateItemUseCase {
 
     override fun findItems(command: FindItemsUseCaseCommand): List<Item> {
         return itemsRepository.find(
@@ -23,6 +29,9 @@ class ItemsService(private val itemsRepository: ItemsRepository) : FindItemsUseC
                 id = UUID.randomUUID(),
                 name = name,
                 description = description,
+                state = state,
+                types = types.toMutableList(),
+                image = imageUrl?.let { imageStorage.load(it) }
             )
         }
             .let { itemsRepository.save(it) }
