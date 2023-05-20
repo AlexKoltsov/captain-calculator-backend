@@ -26,6 +26,7 @@ extra["logback_version"] = "1.2.11"
 extra["exposed_version"] = "0.41.1"
 extra["postgres_version"] = "42.5.1"
 extra["h2_version"] = "2.1.214"
+extra["koin_version"] = "3.4.0"
 
 dependencies {
     implementation(project(":sdk"))
@@ -49,6 +50,9 @@ dependencies {
     implementation("org.postgresql:postgresql:${property("postgres_version")}")
 
     implementation("ch.qos.logback:logback-classic:${property("logback_version")}")
+
+    implementation("io.insert-koin:koin-ktor:${property("koin_version")}")
+    implementation("io.insert-koin:koin-logger-slf4j:${property("koin_version")}")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:${property("ktor_version")}")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${property("kotlin_version")}")
