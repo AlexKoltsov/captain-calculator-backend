@@ -1,5 +1,6 @@
 package com.koltsov.captain.calculator.items.service.infrastructure.ktor.plugins
 
+import com.koltsov.captain.calculator.items.service.infrastructure.web.adapter.out.itemsRouting
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.autohead.*
@@ -14,6 +15,7 @@ fun Application.configureRouting() {
             call.respondText(text = "500: $cause", status = HttpStatusCode.InternalServerError)
         }
     }
+    itemsRouting()
     routing {
         get("/") {
             call.respondText("Hello World!")
