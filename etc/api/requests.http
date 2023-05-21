@@ -18,3 +18,29 @@ Content-Type: application/json
     request.variables.set("id", "1")
 %}
 GET localhost:8080/cities/{{id}}
+
+### Get all items
+GET localhost:8080/api/v1/items
+
+### Create item
+POST localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+}
+
+### Update item by ID
+< {%
+    request.variables.set("id", "1")
+%}
+PUT localhost:8080/api/v1/items/{{id}}
+Content-Type: application/json
+
+{
+}
+
+### Delete item by ID
+< {%
+    request.variables.set("id", "1")
+%}
+DELETE localhost:8080/api/v1/items/{{id}}
