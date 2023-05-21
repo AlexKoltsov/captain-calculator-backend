@@ -10,7 +10,7 @@ import com.koltsov.captain.calculator.items.service.domain.model.ItemState as Do
 
 object ItemsTable : IdTable<UUID>() {
     override val id = uuid("id").entityId()
-    val name = varchar("name", 64).index()
+    val name = varchar("name", 64)
     val description = text("description").nullable()
     val state = enumerationByName<ItemState>("state", 64)
 

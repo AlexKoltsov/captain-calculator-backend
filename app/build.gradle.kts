@@ -25,7 +25,7 @@ extra["ktor_version"] = "2.3.0"
 extra["logback_version"] = "1.4.7"
 extra["exposed_version"] = "0.41.1"
 extra["postgres_version"] = "42.5.1"
-extra["h2_version"] = "2.1.214"
+extra["flyway_version"] = "9.18.0"
 extra["koin_version"] = "3.4.0"
 extra["aws_version"] = "1.12.472"
 
@@ -47,8 +47,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:${property("exposed_version")}")
     implementation("org.jetbrains.exposed:exposed-jdbc:${property("exposed_version")}")
     implementation("org.jetbrains.exposed:exposed-dao:${property("exposed_version")}")
-    implementation("com.h2database:h2:${property("h2_version")}")
     implementation("org.postgresql:postgresql:${property("postgres_version")}")
+    implementation("org.flywaydb:flyway-core:${property("flyway_version")}")
 
     implementation("ch.qos.logback:logback-classic:${property("logback_version")}")
 
