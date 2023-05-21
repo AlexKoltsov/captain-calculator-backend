@@ -5,7 +5,8 @@ ktor:
   deployment:
     port: 8080
 
-postgres:
+db:
+  driver: org.postgresql.Driver
   url: "jdbc:postgresql://localhost:5432/items-service"
-  user: items-service
+  username: items-service
   password: items-service

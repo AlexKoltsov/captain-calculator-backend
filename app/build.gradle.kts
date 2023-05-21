@@ -26,6 +26,7 @@ extra["logback_version"] = "1.4.7"
 extra["exposed_version"] = "0.41.1"
 extra["postgres_version"] = "42.5.1"
 extra["flyway_version"] = "9.18.0"
+extra["hikari_version"] = "5.0.1"
 extra["koin_version"] = "3.4.0"
 extra["aws_version"] = "1.12.472"
 
@@ -49,6 +50,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:${property("exposed_version")}")
     implementation("org.postgresql:postgresql:${property("postgres_version")}")
     implementation("org.flywaydb:flyway-core:${property("flyway_version")}")
+    implementation("com.zaxxer:HikariCP:${property("hikari_version")}")
 
     implementation("ch.qos.logback:logback-classic:${property("logback_version")}")
 
