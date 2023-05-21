@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS items
     name        VARCHAR(64) NOT NULL,
     description TEXT,
     state       VARCHAR(64) NOT NULL,
-    image_id    uuid        NOT NULL,
+    image_id    uuid,
     CONSTRAINT items_id_pkey PRIMARY KEY (id),
     CONSTRAINT items_image_id_fkey FOREIGN KEY (image_id) REFERENCES images (id)
 );

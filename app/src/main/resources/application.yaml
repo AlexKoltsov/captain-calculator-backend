@@ -10,3 +10,9 @@ db:
   url: "jdbc:postgresql://localhost:5432/items-service"
   username: items-service
   password: items-service
+
+aws:
+  endpoint: storage.yandexcloud.net
+  region: ru-central1
+  s3:
+    bucket: captain-calculator

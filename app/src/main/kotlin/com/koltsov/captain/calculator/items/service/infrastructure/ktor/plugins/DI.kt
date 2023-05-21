@@ -3,11 +3,14 @@ package com.koltsov.captain.calculator.items.service.infrastructure.ktor.plugins
 import com.amazonaws.client.builder.AwsClientBuilder
 import com.amazonaws.services.s3.AmazonS3ClientBuilder
 import com.koltsov.captain.calculator.items.service.api.AdminApi
+import com.koltsov.captain.calculator.items.service.domain.port.`in`.AddItemsImageUseCase
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCase
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.FindItemsUseCase
 import com.koltsov.captain.calculator.items.service.domain.port.out.ImageStorage
+import com.koltsov.captain.calculator.items.service.domain.port.out.ImagesRepository
 import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
 import com.koltsov.captain.calculator.items.service.domain.service.ItemsService
+import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.adapter.out.ImagesRepositoryImpl
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.adapter.out.ItemsRepositoryImpl
 import com.koltsov.captain.calculator.items.service.infrastructure.web.adapter.out.ItemsController
 import com.koltsov.captain.calculator.items.service.infrastructure.yandex.storage.S3ImageStorage
@@ -27,30 +30,40 @@ fun Application.configureDI() {
         modules(
             commonModules(),
             itemModules(),
+            imageModules()
         )
     }
 }
 
-fun commonModules() = module {
+fun Application.commonModules() = module {
     single {
         AmazonS3ClientBuilder.standard()
             .withEndpointConfiguration(
                 AwsClientBuilder.EndpointConfiguration(
-                    "storage.yandexcloud.net", "ru-central1"
+                    environment.config.property("aws.endpoint").getString(),
+                    environment.config.property("aws.region").getString(),
                 )
             )
             .build()
     }
     single {
         named("s3-bucket")
-        "captain-calculator"
+        environment.config.property("aws.s3.bucket").getString()
     }
 
 }
 
-fun itemModules() = module {
+fun Application.itemModules() = module {
     singleOf(::ItemsController) bind AdminApi::class
-    singleOf(::ItemsService) binds arrayOf(FindItemsUseCase::class, CreateItemUseCase::class)
-    singleOf(::S3ImageStorage) { named("s3-bucket") } bind ImageStorage::class
+    singleOf(::ItemsService) binds arrayOf(
+        FindItemsUseCase::class,
+        CreateItemUseCase::class,
+        AddItemsImageUseCase::class
+    )
     singleOf(::ItemsRepositoryImpl) bind ItemsRepository::class
+}
+
+fun Application.imageModules() = module {
+    singleOf(::S3ImageStorage) { named("s3-bucket") } bind ImageStorage::class
+    singleOf(::ImagesRepositoryImpl) bind ImagesRepository::class
 }

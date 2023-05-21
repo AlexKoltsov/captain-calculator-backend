@@ -9,7 +9,7 @@ object ItemsTable : IdTable<UUID>() {
     val name = varchar("name", 64)
     val description = text("description").nullable()
     val state = enumerationByName<ItemState>("state", 64)
-    val imageId = reference("image_id", ImagesTable)
+    val imageId = optReference("image_id", ImagesTable)
     // FIXME: types
 }
 

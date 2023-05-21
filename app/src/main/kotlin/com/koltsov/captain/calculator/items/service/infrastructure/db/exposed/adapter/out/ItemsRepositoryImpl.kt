@@ -24,7 +24,7 @@ class ItemsRepositoryImpl : ItemsRepository {
 
     override fun save(item: Item): Item = transaction {
         ItemsTable.insert {
-            it[id] = UUID.randomUUID()
+            it[id] = item.id
             it[name] = item.name
             it[description] = item.description
             it[state] = item.state
@@ -32,6 +32,14 @@ class ItemsRepositoryImpl : ItemsRepository {
                 ?.let { image -> it[imageId] = EntityID(image.id, ImagesTable) }
         }
         item
+    }
+
+    override fun assignImage(id: UUID, imageId: UUID) {
+        transaction {
+            ItemsTable.update({ ItemsTable.id eq id }) {
+                it[ItemsTable.imageId] = EntityID(imageId, ImagesTable)
+            }
+        }
     }
 }
 
