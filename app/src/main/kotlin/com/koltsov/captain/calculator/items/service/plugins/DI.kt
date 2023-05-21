@@ -7,7 +7,7 @@ import com.koltsov.captain.calculator.items.service.domain.port.out.ImageStorage
 import com.koltsov.captain.calculator.items.service.domain.service.ItemsService
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.adapter.out.ItemsRepositoryImpl
 import com.koltsov.captain.calculator.items.service.infrastructure.web.ItemsController
-import com.koltsov.captain.calculator.items.service.infrastructure.yandex.storage.ImageStorageImpl
+import com.koltsov.captain.calculator.items.service.infrastructure.yandex.storage.S3ImageStorage
 import io.ktor.server.application.*
 import org.koin.core.logger.Level
 import org.koin.core.module.dsl.singleOf
@@ -29,6 +29,6 @@ fun Application.configureDI() {
 fun itemModules() = module {
     singleOf(::ItemsController) bind AdminApi::class
     singleOf(::ItemsService) binds arrayOf(FindItemsUseCase::class, CreateItemUseCase::class)
-    singleOf(::ImageStorageImpl) bind ImageStorage::class
+    singleOf(::S3ImageStorage) bind ImageStorage::class
     singleOf(::ItemsRepositoryImpl) bind ItemsRepositoryImpl::class
 }

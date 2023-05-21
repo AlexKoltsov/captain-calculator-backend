@@ -22,11 +22,12 @@ repositories {
 extra["kotlin_version"] = "1.8.21"
 extra["kotlin_code_style"] = "official"
 extra["ktor_version"] = "2.3.0"
-extra["logback_version"] = "1.2.11"
+extra["logback_version"] = "1.4.7"
 extra["exposed_version"] = "0.41.1"
 extra["postgres_version"] = "42.5.1"
 extra["h2_version"] = "2.1.214"
 extra["koin_version"] = "3.4.0"
+extra["aws_version"] = "1.12.472"
 
 dependencies {
     implementation(project(":sdk"))
@@ -53,6 +54,9 @@ dependencies {
 
     implementation("io.insert-koin:koin-ktor:${property("koin_version")}")
     implementation("io.insert-koin:koin-logger-slf4j:${property("koin_version")}")
+
+    implementation(platform("com.amazonaws:aws-java-sdk-bom:${property("aws_version")}"))
+    implementation("com.amazonaws:aws-java-sdk-s3")
 
     testImplementation("io.ktor:ktor-server-tests-jvm:${property("ktor_version")}")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:${property("kotlin_version")}")
