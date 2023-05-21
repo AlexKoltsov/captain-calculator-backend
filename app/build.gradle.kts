@@ -47,7 +47,6 @@ dependencies {
 
     implementation("org.jetbrains.exposed:exposed-core:${property("exposed_version")}")
     implementation("org.jetbrains.exposed:exposed-jdbc:${property("exposed_version")}")
-    implementation("org.jetbrains.exposed:exposed-dao:${property("exposed_version")}")
     implementation("org.postgresql:postgresql:${property("postgres_version")}")
     implementation("org.flywaydb:flyway-core:${property("flyway_version")}")
     implementation("com.zaxxer:HikariCP:${property("hikari_version")}")
