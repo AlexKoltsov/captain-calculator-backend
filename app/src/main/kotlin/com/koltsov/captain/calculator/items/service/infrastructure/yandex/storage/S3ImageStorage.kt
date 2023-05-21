@@ -13,8 +13,9 @@ class S3ImageStorage(
     private val log = LoggerFactory.getLogger(javaClass)
 
     override fun load(imageUrl: String): Image {
-        val s3Object = s3.getObject(bucket, imageUrl)
-        log.info(s3Object.toString())
-        return Image(name = "", url = imageUrl)
+        return Image(
+            name = s3.getObject(bucket, imageUrl).key,
+            url = imageUrl,
+        )
     }
 }

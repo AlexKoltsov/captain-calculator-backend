@@ -17,6 +17,7 @@ fun ItemUpsertRequest.toUseCaseCommand(): CreateItemUseCaseCommand = CreateItemU
     state = state.toDomain(),
     types = types.map { it.toDomain() },
     description = description,
+    imageUrl = imageUrl,
 )
 
 fun fromDomain(item: Item): ItemResponse = with(item) {

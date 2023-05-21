@@ -42,7 +42,7 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging-jvm:${property("ktor_version")}")
     implementation("io.ktor:ktor-server-call-id-jvm:${property("ktor_version")}")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:${property("ktor_version")}")
-    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:${property("ktor_version")}")
+    implementation("io.ktor:ktor-serialization-jackson-jvm:${property("ktor_version")}")
 
     implementation("org.jetbrains.exposed:exposed-core:${property("exposed_version")}")
     implementation("org.jetbrains.exposed:exposed-jdbc:${property("exposed_version")}")

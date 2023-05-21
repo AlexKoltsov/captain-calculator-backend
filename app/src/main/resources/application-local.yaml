@@ -3,8 +3,3 @@ DB_PORT: 5432
 DB_NAME: items-service
 DB_USER: items-service
 DB_PASSWORD: items-service
-
-spring:
-  exposed:
-    generate-ddl: true
-    show-sql: true
