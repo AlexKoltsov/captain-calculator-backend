@@ -1,4 +1,4 @@
-package com.koltsov.captain.calculator.items.service.plugins
+package com.koltsov.captain.calculator.items.service.infrastructure.ktor.plugins
 
 import org.jetbrains.exposed.sql.*
 import io.ktor.http.*

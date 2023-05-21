@@ -1,6 +1,6 @@
 package com.koltsov.captain.calculator.items.service
 
-import com.koltsov.captain.calculator.items.service.plugins.*
+import com.koltsov.captain.calculator.items.service.infrastructure.ktor.plugins.*
 import io.ktor.server.application.*
 
 fun main(args: Array<String>): Unit =

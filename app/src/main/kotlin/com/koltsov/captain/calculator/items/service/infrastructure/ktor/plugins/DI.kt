@@ -1,4 +1,4 @@
-package com.koltsov.captain.calculator.items.service.plugins
+package com.koltsov.captain.calculator.items.service.infrastructure.ktor.plugins
 
 import com.koltsov.captain.calculator.items.service.api.AdminApi
 import com.koltsov.captain.calculator.items.service.domain.port.`in`.CreateItemUseCase
