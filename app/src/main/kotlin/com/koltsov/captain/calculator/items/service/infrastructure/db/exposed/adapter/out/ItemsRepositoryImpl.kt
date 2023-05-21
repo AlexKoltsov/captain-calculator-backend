@@ -4,7 +4,6 @@ import com.koltsov.captain.calculator.items.service.domain.model.Item
 import com.koltsov.captain.calculator.items.service.domain.port.out.ItemsRepository
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.ItemEntity
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.ItemsTable
-import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.fromDomain
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.entity.toDomain
 import com.koltsov.captain.calculator.items.service.infrastructure.db.exposed.regexpOp
 import org.jetbrains.exposed.sql.and
@@ -25,7 +24,7 @@ class ItemsRepositoryImpl : ItemsRepository {
         ItemEntity.new(id = item.id) {
             name = item.name
             description = item.description
-            state = item.state.fromDomain()
+            state = item.state
         }
             .toDomain()
     }

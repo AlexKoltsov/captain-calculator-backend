@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3
 import com.koltsov.captain.calculator.items.service.domain.model.Image
 import com.koltsov.captain.calculator.items.service.domain.port.out.ImageStorage
 import org.slf4j.LoggerFactory
+import java.util.*
 
 class S3ImageStorage(
     private val bucket: String,
@@ -14,7 +15,8 @@ class S3ImageStorage(
 
     override fun load(imageUrl: String): Image {
         return Image(
-            name = s3.getObject(bucket, imageUrl).key,
+            id = UUID.randomUUID(), // FIXME:
+            fileName = s3.getObject(bucket, imageUrl).key,
             url = imageUrl,
         )
     }

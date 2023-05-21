@@ -9,18 +9,19 @@ import java.util.*
 
 object ImagesTable : IdTable<UUID>() {
     override val id = uuid("id").entityId()
-    val fileName = varchar("file_name", 64).index()
+    val fileName = varchar("file_name", 64)
     val url = varchar("url", 255)
 }
 
 class ImageEntity(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<ItemEntity>(ImagesTable)
+    companion object : UUIDEntityClass<ImageEntity>(ImagesTable)
 
     var fileName by ImagesTable.fileName
     var url by ImagesTable.url
 }
 
 fun ImageEntity.toDomain(): Image = Image(
-    name = this.fileName,
+    id = this.id.value,
+    fileName = this.fileName,
     url = this.url
 )

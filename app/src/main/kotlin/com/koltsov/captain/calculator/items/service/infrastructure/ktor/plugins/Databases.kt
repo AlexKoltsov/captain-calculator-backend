@@ -21,6 +21,7 @@ fun Application.configureDatabases() {
             Database.connect(it)
             Flyway
                 .configure()
+                .loggers("slf4j")
                 .dataSource(it)
                 .load()
                 .migrate()

@@ -21,7 +21,13 @@ fun ItemUpsertRequest.toUseCaseCommand(): CreateItemUseCaseCommand = CreateItemU
 )
 
 fun fromDomain(item: Item): ItemResponse = with(item) {
-    ItemResponse(id = id, name = name, description = description)
+    ItemResponse(
+        id = id,
+        name = name,
+        description = description,
+        state = state.toResponse(),
+        imageUrl = image?.url
+    )
 }
 
 fun ItemState.toDomain(): DomainItemState = when (this) {
@@ -29,6 +35,13 @@ fun ItemState.toDomain(): DomainItemState = when (this) {
     ItemState.MOLTEN -> DomainItemState.MOLTEN
     ItemState.UNIT -> DomainItemState.UNIT
     ItemState.FLUID -> DomainItemState.FLUID
+}
+
+fun DomainItemState.toResponse(): ItemState = when (this) {
+    DomainItemState.LOOSE -> ItemState.LOOSE
+    DomainItemState.MOLTEN -> ItemState.MOLTEN
+    DomainItemState.UNIT -> ItemState.UNIT
+    DomainItemState.FLUID -> ItemState.FLUID
 }
 
 fun ItemType.toDomain(): DomainItemType = when (this) {

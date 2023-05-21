@@ -6,5 +6,7 @@ data class ItemResponse(
     val id: UUID,
     val name: String,
     val description: String?,
+    val state: ItemState,
+    val imageUrl: String?,
 ) {
 }
